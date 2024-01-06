@@ -4,19 +4,20 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 const BASE_URL = process.env.EXPO_PUBLIC_BASE_URL;
 const API_KEY = process.env.EXPO_PUBLIC_API_KEY;
 
-export const sendOrder = createAsyncThunk<
+export const search = createAsyncThunk<
   any,
   any,
   {
     rejectValue: string;
   }
->("cart/sendOrder", async (order, { rejectWithValue }) => {
+>("search", async ({ rejectWithValue }) => {
   try {
-    const res = await axios.post(`${BASE_URL}send_email`, {
-      body: JSON.stringify(order),
-    });
-    return res.status;
+    const res = await axios(
+      `${BASE_URL}forecast.json?q=Dnipropetrovsk&days=7&lang=uk&key=${API_KEY}`
+    );
+    console.log(res);
+    return res;
   } catch (error: any) {
-    return rejectWithValue(error.message as string);
+    return rejectWithValue(error.message);
   }
 });

@@ -4,6 +4,10 @@ import { styles } from "./Button.styles";
 
 export type ButtonProps = TouchableOpacityProps;
 
-export function Button({ children }: ButtonProps) {
-  return <TouchableOpacity style={styles.button}>{children}</TouchableOpacity>;
+export function Button({ onPress, children }: ButtonProps) {
+  return (
+    <TouchableOpacity style={styles.button} onPress={onPress}>
+      {children}
+    </TouchableOpacity>
+  );
 }

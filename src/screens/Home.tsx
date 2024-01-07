@@ -13,7 +13,7 @@ export default function Home() {
   const [isSwitchOn, setIsSwitchOn] = useState(false);
   const [currentTheme, setCurrentTheme] = useState(darkTheme);
 
-  const dispatch = useAppDispatch();
+  // const dispatch = useAppDispatch();
 
   useEffect(() => {
     const colorScheme = Appearance.getColorScheme();
@@ -24,9 +24,9 @@ export default function Home() {
     }
   }, []);
 
-  useEffect(() => {
-    dispatch(search());
-  }, []);
+  // useEffect(() => {
+  //   dispatch(search());
+  // }, []);
 
   const toggleSwitch = () => {
     setIsSwitchOn(!isSwitchOn);

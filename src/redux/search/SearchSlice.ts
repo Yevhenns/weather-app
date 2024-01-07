@@ -4,7 +4,7 @@ import type { RootState } from "../store";
 import { search } from "./SearchOperations";
 
 const initialState = {
-  wrather: [],
+  weather: [],
   error: null as any,
   isLoading: false,
 };
@@ -20,11 +20,13 @@ export const searchSlice = createSlice({
         state.error = false;
       })
       .addCase(search.fulfilled, (state, action) => {
+        console.log(action.payload);
         if (!action.payload) {
           state.error = true;
           state.isLoading = false;
           return;
         } else {
+          state.weather = action.payload;
           state.isLoading = false;
         }
       })

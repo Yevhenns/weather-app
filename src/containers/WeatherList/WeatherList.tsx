@@ -1,4 +1,4 @@
-import { View, Text, Image } from "react-native";
+import { View, Text } from "react-native";
 import { getCity, getWeather } from "../../redux/search/SearchSlice";
 import { useAppSelector } from "../../redux/hooks";
 import { styles } from "./WeatherList.styles";

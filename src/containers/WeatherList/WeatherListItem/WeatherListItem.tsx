@@ -2,12 +2,21 @@ import { View, Text, Image } from "react-native";
 
 import { styles } from "./WeatherListItem.styles";
 
-export function WeatherListItem({ data }) {
+interface WeatherListItemProps {
+  data: ForecastDay;
+}
+
+export function WeatherListItem({ data }: WeatherListItemProps) {
+  const { date, avgtemp, conditionText, icon } = data;
+
+  const uri = "https:" + icon;
+
   return (
-    <View key={data.date} style={styles.wrapper}>
-      <Text>{data.date}:</Text>
-      <Text>{data.avgtemp_c} C°</Text>
-      <Text>{data.conditionText}</Text>
+    <View key={date} style={styles.wrapper}>
+      <Text>{date}:</Text>
+      <Image source={{ uri: uri }} width={20} height={20} />
+      <Text>{avgtemp} C°</Text>
+      <Text>{conditionText}</Text>
     </View>
   );
 }

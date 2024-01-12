@@ -7,7 +7,7 @@ const API_KEY = process.env.EXPO_PUBLIC_API_KEY;
 axios.defaults.baseURL = BASE_URL;
 
 export const search = createAsyncThunk<
-  any,
+  FilteredResponse,
   void,
   {
     rejectValue: string;

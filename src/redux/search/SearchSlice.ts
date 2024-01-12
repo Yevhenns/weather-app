@@ -3,8 +3,15 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 import type { RootState } from "../store";
 import { search } from "./SearchOperations";
 
+type Weather = {
+  date: string;
+  avgtemp_c: string;
+  conditionText: string;
+}[];
+
 const initialState = {
-  weather: [],
+  weather: [] as Weather | [],
+  city: "",
   error: null as any,
   isLoading: false,
 };
@@ -26,7 +33,20 @@ export const searchSlice = createSlice({
           state.isLoading = false;
           return;
         } else {
-          state.weather = action.payload;
+          state.city = action.payload.location.name;
+          const newArray = action.payload.forecast.forecastday.map(
+            (item: {
+              date: string;
+              day: { avgtemp_c: string; condition: { text: string } };
+            }) => {
+              return {
+                date: item.date,
+                avgtemp_c: item.day.avgtemp_c,
+                conditionText: item.day.condition.text,
+              };
+            }
+          );
+          state.weather = newArray;
           state.isLoading = false;
         }
       })
@@ -38,3 +58,6 @@ export const searchSlice = createSlice({
 });
 
 export const searchReducer = searchSlice.reducer;
+
+export const getWeather = (state: RootState) => state.search.weather;
+export const getCity = (state: RootState) => state.search.city;

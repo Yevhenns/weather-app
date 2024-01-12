@@ -9,7 +9,7 @@ export function Menu() {
   const setDaysAmount = (days: number) => {
     setDays(days);
   };
-  console.log(days);
+
   return (
     <View style={styles.container}>
       <Button onPress={() => setDaysAmount(1)}>

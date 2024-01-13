@@ -1,19 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { StatusBar } from "expo-status-bar";
 import { View, Appearance } from "react-native";
-import { Menu } from "../containers/Menu";
-import { Search } from "../containers/Search";
-import { ThemeSwitcher } from "../containers/ThemeSwitcher";
-import { darkTheme, lightTheme } from "../styles/constants";
-import { WeatherList } from "../containers/WeatherList";
-import { useAppDispatch } from "../redux/hooks";
-import { search } from "../redux/search/SearchOperations";
+import { Menu } from "../../containers/Menu";
+import { Search } from "../../containers/Search";
+import { ThemeSwitcher } from "../../containers/ThemeSwitcher";
+import { darkTheme, lightTheme } from "../../styles/constants";
+import { WeatherList } from "../../containers/WeatherList";
 
-export default function Home() {
+export function HomeScreen() {
   const [isSwitchOn, setIsSwitchOn] = useState(false);
   const [currentTheme, setCurrentTheme] = useState(darkTheme);
-
-  // const dispatch = useAppDispatch();
 
   useEffect(() => {
     const colorScheme = Appearance.getColorScheme();
@@ -23,10 +19,6 @@ export default function Home() {
       setCurrentTheme(lightTheme);
     }
   }, []);
-
-  // useEffect(() => {
-  //   dispatch(search());
-  // }, []);
 
   const toggleSwitch = () => {
     setIsSwitchOn(!isSwitchOn);

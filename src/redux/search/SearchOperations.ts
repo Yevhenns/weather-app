@@ -15,7 +15,7 @@ export const search = createAsyncThunk<
 >("search", async (_, { rejectWithValue }) => {
   try {
     const res = await axios.get(
-      `/forecast.json?q=Dnipropetrovsk&days=7&lang=uk&key=${API_KEY}`
+      `/forecast.json?q=Lviv&days=14&lang=uk&key=${API_KEY}`
     );
     return res.data;
   } catch (error: any) {

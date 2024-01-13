@@ -1,19 +1,37 @@
-import { View, Text } from "react-native";
-import { getCity, getWeather } from "../../redux/search/SearchSlice";
+import { View, Text, ActivityIndicator } from "react-native";
+import { WeatherListItem } from "./WeatherListItem";
+import {
+  getCity,
+  getDays,
+  getIsLoading,
+  getWeather,
+} from "../../redux/search/SearchSlice";
 import { useAppSelector } from "../../redux/hooks";
 import { styles } from "./WeatherList.styles";
-import { WeatherListItem } from "./WeatherListItem/WeatherListItem";
 
 export function WeatherList() {
   const data = useAppSelector(getWeather);
   const city = useAppSelector(getCity);
+  const days = useAppSelector(getDays);
+  const isLoading = useAppSelector(getIsLoading);
+
+  const filteredForecast = () => {
+    const newArr = data.slice();
+    return newArr.splice(0, days);
+  };
 
   return (
     <View style={styles.wrapper}>
       <Text style={styles.heading}>Погода в місті {city}</Text>
-      {data.map((item) => {
-        return <WeatherListItem key={item.date} data={item} />;
-      })}
+      {isLoading ? (
+        <ActivityIndicator />
+      ) : (
+        <View style={styles.weatherWrapper}>
+          {filteredForecast().map((item) => {
+            return <WeatherListItem key={item.date} data={item} />;
+          })}
+        </View>
+      )}
     </View>
   );
 }

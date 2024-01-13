@@ -1,12 +1,12 @@
 import React from "react";
-import Home from "./src/screens/Home";
+import { HomeScreen } from "./src/screens/HomeScreen";
 import { Provider } from "react-redux";
 import { store } from "./src/redux/store";
 
 export default function App() {
   return (
     <Provider store={store}>
-      <Home />
+      <HomeScreen />
     </Provider>
   );
 }

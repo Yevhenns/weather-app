@@ -13,7 +13,7 @@ export function WeatherListItem({ data }: WeatherListItemProps) {
 
   return (
     <View key={date} style={styles.wrapper}>
-      <Text>{date}:</Text>
+      <Text>{date}</Text>
       <Image source={{ uri: uri }} width={20} height={20} />
       <Text>{avgtemp} C°</Text>
       <Text>{conditionText}</Text>

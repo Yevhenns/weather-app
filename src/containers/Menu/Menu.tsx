@@ -15,16 +15,16 @@ export function Menu() {
   return (
     <View style={styles.container}>
       <Button onPress={() => setDaysAmount(1)}>
-        <Text>Сьогодні</Text>
+        <Text>Today</Text>
       </Button>
       <Button onPress={() => setDaysAmount(3)}>
-        <Text>3 дні</Text>
+        <Text>3 days</Text>
       </Button>
       <Button onPress={() => setDaysAmount(7)}>
-        <Text>7 днів</Text>
+        <Text>7 days</Text>
       </Button>
       <Button onPress={() => setDaysAmount(14)}>
-        <Text>14 днів</Text>
+        <Text>14 days</Text>
       </Button>
     </View>
   );

@@ -1,4 +1,4 @@
-import { View, Text, ActivityIndicator } from "react-native";
+import { View, Text, ActivityIndicator, Alert, ScrollView } from "react-native";
 import { WeatherListItem } from "./WeatherListItem";
 import {
   getCity,
@@ -21,17 +21,21 @@ export function WeatherList() {
   };
 
   return (
-    <View style={styles.wrapper}>
-      <Text style={styles.heading}>Погода в місті {city}</Text>
+    <ScrollView style={styles.wrapper}>
       {isLoading ? (
         <ActivityIndicator />
       ) : (
         <View style={styles.weatherWrapper}>
-          {filteredForecast().map((item) => {
-            return <WeatherListItem key={item.date} data={item} />;
-          })}
+          {data.length > 0 && (
+            <>
+              <Text style={styles.heading}>Forecast for {city}</Text>
+              {filteredForecast().map((item) => {
+                return <WeatherListItem key={item.date} data={item} />;
+              })}
+            </>
+          )}
         </View>
       )}
-    </View>
+    </ScrollView>
   );
 }

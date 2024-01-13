@@ -4,8 +4,9 @@ import { search } from "./SearchOperations";
 
 const initialState = {
   weather: [] as Forecast | [],
-  city: "",
   days: 1,
+  inputCity: "",
+  city: "",
   error: null as any,
   isLoading: false,
 };
@@ -16,6 +17,9 @@ export const searchSlice = createSlice({
   reducers: {
     setDays(state, action: { payload: number }) {
       state.days = action.payload;
+    },
+    setInputCity(state, action: { payload: string }) {
+      state.inputCity = action.payload;
     },
   },
   extraReducers: (builder) =>
@@ -32,7 +36,7 @@ export const searchSlice = createSlice({
             state.isLoading = false;
             return;
           } else {
-            state.city = action.payload.location.name;
+            state.weather = [];
             const newArray = action.payload.forecast.forecastday.map((item) => {
               return {
                 date: item.date.split("-").reverse().join("."),
@@ -42,6 +46,7 @@ export const searchSlice = createSlice({
               };
             });
             state.weather = newArray;
+            state.city = action.payload.location.name;
             state.isLoading = false;
           }
         }
@@ -61,3 +66,4 @@ export const getDays = (state: RootState) => state.search.days;
 export const getIsLoading = (state: RootState) => state.search.isLoading;
 
 export const { setDays } = searchSlice.actions;
+export const { setInputCity } = searchSlice.actions;

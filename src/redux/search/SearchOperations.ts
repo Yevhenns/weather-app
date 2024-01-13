@@ -8,14 +8,14 @@ axios.defaults.baseURL = BASE_URL;
 
 export const search = createAsyncThunk<
   FilteredResponse,
-  void,
+  string,
   {
     rejectValue: string;
   }
->("search", async (_, { rejectWithValue }) => {
+>("search", async (city, { rejectWithValue }) => {
   try {
     const res = await axios.get(
-      `/forecast.json?q=Lviv&days=14&lang=uk&key=${API_KEY}`
+      `/forecast.json?q=${city}&days=14&lang=en&key=${API_KEY}`
     );
     return res.data;
   } catch (error: any) {

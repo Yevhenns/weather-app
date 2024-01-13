@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { TextInput } from "react-native";
 import { styles } from "./Input.styles";
 import { useAppDispatch } from "../../redux/hooks";

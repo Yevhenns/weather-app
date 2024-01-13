@@ -1,5 +1,4 @@
 import { View, Text, Image } from "react-native";
-
 import { styles } from "./WeatherListItem.styles";
 
 interface WeatherListItemProps extends Theme {

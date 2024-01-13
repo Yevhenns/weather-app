@@ -1,7 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { RootState } from "../store";
 import { search } from "./SearchOperations";
-import { lightTheme } from "../../styles/constants";
 
 const initialState = {
   weather: [] as Forecast | [],

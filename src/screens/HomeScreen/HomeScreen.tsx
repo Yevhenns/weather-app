@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { StatusBar } from "expo-status-bar";
-import { View, Appearance } from "react-native";
+import { View } from "react-native";
 import { Menu } from "../../containers/Menu";
 import { Search } from "../../containers/Search";
 import { ThemeSwitcher } from "../../containers/ThemeSwitcher";

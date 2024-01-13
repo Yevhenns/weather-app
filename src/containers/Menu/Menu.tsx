@@ -1,9 +1,8 @@
-import React from "react";
 import { View, Text } from "react-native";
 import { Button } from "../../components/Button";
-import { styles } from "./Menu.styles";
 import { useAppDispatch } from "../../redux/hooks";
 import { setDays } from "../../redux/search/SearchSlice";
+import { styles } from "./Menu.styles";
 
 export function Menu() {
   const dispatch = useAppDispatch();

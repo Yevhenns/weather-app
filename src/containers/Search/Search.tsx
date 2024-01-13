@@ -2,10 +2,10 @@ import { View } from "react-native";
 import { Input } from "../../components/Input";
 import { Button } from "../../components/Button";
 import { AntDesign } from "@expo/vector-icons";
-import { styles } from "./Search.styles";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { search } from "../../redux/search/SearchOperations";
 import { getInputCity } from "../../redux/search/SearchSlice";
+import { styles } from "./Search.styles";
 
 export function Search() {
   const dispatch = useAppDispatch();

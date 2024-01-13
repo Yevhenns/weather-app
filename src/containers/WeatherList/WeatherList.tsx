@@ -24,7 +24,6 @@ export function WeatherList({ currentTheme }: Theme) {
 
   if (error) {
     Alert.alert("Something wrong");
-    return <ActivityIndicator />;
   }
 
   if (isLoading) return <ActivityIndicator />;
@@ -32,7 +31,7 @@ export function WeatherList({ currentTheme }: Theme) {
   return (
     <ScrollView style={styles.wrapper} showsVerticalScrollIndicator={false}>
       <View style={styles.weatherWrapper}>
-        {data.length > 0 && (
+        {data.length > 0 && !error && (
           <>
             <Text
               style={{ textAlign: "center", color: currentTheme.textColor }}

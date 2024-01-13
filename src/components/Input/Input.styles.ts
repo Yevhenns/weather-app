@@ -5,5 +5,6 @@ export const styles = StyleSheet.create({
     backgroundColor: "#fff8f0",
     width: 200,
     paddingHorizontal: 10,
+    borderRadius: 5,
   },
 });

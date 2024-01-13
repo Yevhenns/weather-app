@@ -6,25 +6,26 @@ import { Search } from "../../containers/Search";
 import { ThemeSwitcher } from "../../containers/ThemeSwitcher";
 import { darkTheme, lightTheme } from "../../styles/constants";
 import { WeatherList } from "../../containers/WeatherList";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import { getIsLightTheme, toggleTheme } from "../../redux/search/SearchSlice";
 
 export function HomeScreen() {
-  const [isSwitchOn, setIsSwitchOn] = useState(false);
-  const [currentTheme, setCurrentTheme] = useState(darkTheme);
+  const [currentTheme, setCurrentTheme] = useState(lightTheme);
 
-  useEffect(() => {
-    const colorScheme = Appearance.getColorScheme();
-    if (colorScheme === "dark") {
-      setCurrentTheme(darkTheme);
-    } else {
-      setCurrentTheme(lightTheme);
-    }
-  }, []);
+  const isLightTheme = useAppSelector(getIsLightTheme);
+  const dispatch = useAppDispatch();
 
   const toggleSwitch = () => {
-    setIsSwitchOn(!isSwitchOn);
-    const newTheme = isSwitchOn ? darkTheme : lightTheme;
-    setCurrentTheme(newTheme);
+    dispatch(toggleTheme(!isLightTheme));
   };
+
+  useEffect(() => {
+    if (isLightTheme) {
+      setCurrentTheme(lightTheme);
+    } else {
+      setCurrentTheme(darkTheme);
+    }
+  }, [isLightTheme]);
 
   return (
     <View
@@ -36,10 +37,10 @@ export function HomeScreen() {
         paddingTop: 50,
       }}
     >
-      <ThemeSwitcher isSwitchOn={isSwitchOn} toggleSwitch={toggleSwitch} />
+      <ThemeSwitcher toggleSwitch={toggleSwitch} isLightTheme={isLightTheme} />
       <Search />
       <Menu />
-      <WeatherList />
+      <WeatherList currentTheme={currentTheme} />
       <StatusBar style="auto" />
     </View>
   );

@@ -24,3 +24,10 @@ interface ForecastDay {
 }
 
 type Forecast = ForecastDay[];
+
+interface Theme {
+  currentTheme: {
+    containerBackgroundColor: string;
+    textColor: string;
+  };
+}

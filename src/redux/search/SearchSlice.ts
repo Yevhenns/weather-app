@@ -1,12 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { RootState } from "../store";
 import { search } from "./SearchOperations";
+import { lightTheme } from "../../styles/constants";
 
 const initialState = {
   weather: [] as Forecast | [],
   days: 1,
   inputCity: "",
   city: "",
+  isLightTheme: true,
   error: null as any,
   isLoading: false,
 };
@@ -20,6 +22,9 @@ export const searchSlice = createSlice({
     },
     setInputCity(state, action: { payload: string }) {
       state.inputCity = action.payload;
+    },
+    toggleTheme(state, action) {
+      state.isLightTheme = action.payload;
     },
   },
   extraReducers: (builder) =>
@@ -64,8 +69,10 @@ export const getWeather = (state: RootState) => state.search.weather;
 export const getInputCity = (state: RootState) => state.search.inputCity;
 export const getCity = (state: RootState) => state.search.city;
 export const getDays = (state: RootState) => state.search.days;
+export const getIsLightTheme = (state: RootState) => state.search.isLightTheme;
 export const getIsLoading = (state: RootState) => state.search.isLoading;
 export const getError = (state: RootState) => state.search.error;
 
 export const { setDays } = searchSlice.actions;
 export const { setInputCity } = searchSlice.actions;
+export const { toggleTheme } = searchSlice.actions;

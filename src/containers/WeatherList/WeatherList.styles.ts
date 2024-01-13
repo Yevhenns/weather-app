@@ -9,7 +9,4 @@ export const styles = StyleSheet.create({
   weatherWrapper: {
     gap: 10,
   },
-  heading: {
-    textAlign: "center",
-  },
 });

@@ -10,7 +10,7 @@ import {
 import { useAppSelector } from "../../redux/hooks";
 import { styles } from "./WeatherList.styles";
 
-export function WeatherList() {
+export function WeatherList({ currentTheme }: Theme) {
   const data = useAppSelector(getWeather);
   const city = useAppSelector(getCity);
   const days = useAppSelector(getDays);
@@ -22,7 +22,10 @@ export function WeatherList() {
     return newArr.splice(0, days);
   };
 
-  if (error) return Alert.alert("Something wrong");
+  if (error) {
+    Alert.alert("Something wrong");
+    return <ActivityIndicator />;
+  }
 
   if (isLoading) return <ActivityIndicator />;
 
@@ -31,9 +34,19 @@ export function WeatherList() {
       <View style={styles.weatherWrapper}>
         {data.length > 0 && (
           <>
-            <Text style={styles.heading}>Forecast for {city}</Text>
+            <Text
+              style={{ textAlign: "center", color: currentTheme.textColor }}
+            >
+              Forecast for {city}
+            </Text>
             {filteredForecast().map((item) => {
-              return <WeatherListItem key={item.date} data={item} />;
+              return (
+                <WeatherListItem
+                  key={item.date}
+                  data={item}
+                  currentTheme={currentTheme}
+                />
+              );
             })}
           </>
         )}
